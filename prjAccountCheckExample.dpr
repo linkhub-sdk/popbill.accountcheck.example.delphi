@@ -4,8 +4,9 @@ uses
   Forms,
   Linkhub in 'Linkhub\Linkhub.pas',
   Popbill in 'Popbill\Popbill.pas',
+  PopbillAccountCheck in 'PopbillAccountCheck\PopbillAccountCheck.pas',  
   Example in 'Example.pas' {Form1};
-  PopbillAccountCheck in 'PopbillAccountCheck\PopbillAccountCheck.pas',
+
 
 {$R *.RES}
 
