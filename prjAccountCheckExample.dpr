@@ -5,8 +5,7 @@ uses
   Linkhub in 'Linkhub\Linkhub.pas',
   Popbill in 'Popbill\Popbill.pas',
   Example in 'Example.pas' {Form1};
-
-PopbillAccountCheck in 'PopbillAccountCheck\PopbillAccountCheck.pas',
+  PopbillAccountCheck in 'PopbillAccountCheck\PopbillAccountCheck.pas',
 
 {$R *.RES}
 
