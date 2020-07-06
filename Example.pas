@@ -155,7 +155,7 @@ begin
                 tmp := 'bankCode (기관코드) : '+ accountInfo.bankCode + #13;
                 tmp := tmp + 'accountNumber (계좌번호) : '+ accountInfo.accountNumber + #13;
                 tmp := tmp + 'accountName (예금주 성명) : '+ accountInfo.accountName + #13;
-                tmp := tmp + 'checkDate (확인일시) : '+ accountInfo.checkDate + #13;
+                tmp := tmp + 'checkDate (확인일시) : '+ FloatToStr(accountInfo.checkDate) + #13;
                 tmp := tmp + 'resultCode (응답코드) : '+ accountInfo.resultCode + #13;
                 tmp := tmp + 'resultMessage (응답메시지) : '+ accountInfo.resultMessage + #13#13;
 
