@@ -127,7 +127,7 @@ object frmExample: TfrmExample
     end
     object btnListContact: TButton
       Left = 7
-      Top = 48
+      Top = 80
       Width = 129
       Height = 25
       Caption = '담당자 목록 조회'
@@ -136,7 +136,7 @@ object frmExample: TfrmExample
     end
     object btnUpdateContact: TButton
       Left = 7
-      Top = 80
+      Top = 112
       Width = 129
       Height = 25
       Caption = '담당자 정보 수정'
@@ -145,7 +145,7 @@ object frmExample: TfrmExample
     end
     object btnGetContactInfo: TButton
       Left = 8
-      Top = 112
+      Top = 48
       Width = 129
       Height = 25
       Caption = '담당자 정보 확인'

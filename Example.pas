@@ -205,8 +205,8 @@ begin
         // 아이디, 6자이상 50자 미만
         joinInfo.ID     := 'userid';
 
-        // 비밀번호, 6자이상 20자 미만
-        joinInfo.PWD    := 'pwd_must_be_long_enough';
+        // 비밀번호 (8자 이상 20자 미만) 영문, 숫자 ,특수문자 조합
+        joinInfo.Password := 'asdf123!@';
 
         // 담당자명, 최대 100자
         joinInfo.ContactName := '담당자명';
@@ -395,8 +395,8 @@ begin
         // [필수] 담당자 아이디 (6자 이상 50자 미만)
         joinInfo.id := 'testkorea';
 
-        // [필수] 비밀번호 (6자 이상 20자 미만)
-        joinInfo.pwd := 'thisispassword';
+        // 비밀번호 (8자 이상 20자 미만) 영문, 숫자 ,특수문자 조합
+        joinInfo.Password := 'asdf123!@';
 
         // [필수] 담당자명(한글이나 영문 100자 이내)
         joinInfo.personName := '담당자성명';
@@ -413,11 +413,8 @@ begin
         // [필수] 이메일 (최대 100자)
         joinInfo.email := 'test@test.com';
 
-        // 회사조회 권한여부, true-회사조회 / false-개인조회
-        joinInfo.searchAllAllowYN := false;
-
-        // 관리자 권한여부, true-관리자 / false-사용자
-        joinInfo.mgrYN := false;
+        // 담당자 조회권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
+        joinInfo.searchRole := '3';
 
         try
                 response := accountCheckService.RegistContact(txtCorpNum.text, joinInfo);
@@ -449,7 +446,7 @@ begin
                 end;
         end;
 
-        tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchAllAllowYN(회사조회 권한) | ';
+        tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchRole(담당자 조회 권한) | ';
         tmp := tmp + 'tel(연락처) | fax(팩스) | mgrYN(관리자 여부) | regDT(등록일시) | state(상태)' + #13;
 
         for i := 0 to Length(InfoList) -1 do
@@ -458,7 +455,7 @@ begin
             tmp := tmp + InfoList[i].email + ' | ';
             tmp := tmp + InfoList[i].hp + ' | ';
             tmp := tmp + InfoList[i].personName + ' | ';
-            tmp := tmp + BoolToStr(InfoList[i].searchAllAllowYN) + ' | ';
+            tmp := tmp + InfoList[i].searchRole + ' | ';
             tmp := tmp + InfoList[i].tel + ' | ';
             tmp := tmp + InfoList[i].fax + ' | ';
             tmp := tmp + BoolToStr(InfoList[i].mgrYN) + ' | ';
@@ -498,11 +495,9 @@ begin
         // 팩스번호 (최대 20자)
         contactInfo.fax := '02-6442-9799';
 
-        // 조회권한, true(회사조회), false(개인조회)
-        contactInfo.searchAllAllowYN := true;
+        // 담당자 조회권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
+        contactInfo.searchRole := '3';
 
-        // 관리자권한 설정여부, true-관리자 / false-사용자
-        contactInfo.mgrYN := false;
 
         try
                 response := accountCheckService.UpdateContact(txtCorpNum.text, contactInfo, txtUserID.text);
