@@ -1,6 +1,6 @@
 object frmExample: TfrmExample
-  Left = 330
-  Top = 442
+  Left = 561
+  Top = 475
   Width = 1140
   Height = 390
   Caption = '팝빌 예금주조회 API Delphi SDK Example'
@@ -35,20 +35,20 @@ object frmExample: TfrmExample
     Left = 16
     Top = 48
     Width = 1089
-    Height = 153
+    Height = 177
     Caption = '팝빌 기본 API'
     TabOrder = 0
     object GroupBox8: TGroupBox
       Left = 768
       Top = 16
       Width = 144
-      Height = 122
+      Height = 145
       Caption = '연동과금 포인트'
       TabOrder = 0
       object btnGetBalance: TButton
         Left = 9
         Top = 19
-        Width = 122
+        Width = 129
         Height = 25
         Caption = '잔여포인트 조회'
         TabOrder = 0
@@ -57,11 +57,29 @@ object frmExample: TfrmExample
       object btnGetChargeURL: TButton
         Left = 9
         Top = 50
-        Width = 122
+        Width = 129
         Height = 25
         Caption = '포인트 충전 URL'
         TabOrder = 1
         OnClick = btnGetChargeURLClick
+      end
+      object btnGetPaymentURL: TButton
+        Left = 8
+        Top = 80
+        Width = 129
+        Height = 25
+        Caption = '포인트 결제내역 URL'
+        TabOrder = 2
+        OnClick = btnGetPaymentURLClick
+      end
+      object btnGetUseHistoryURL: TButton
+        Left = 8
+        Top = 112
+        Width = 129
+        Height = 25
+        Caption = '포인트 사용내역 URL'
+        TabOrder = 3
+        OnClick = btnGetUseHistoryURLClick
       end
     end
     object GroupBox9: TGroupBox
@@ -95,7 +113,7 @@ object frmExample: TfrmExample
     Left = 480
     Top = 65
     Width = 144
-    Height = 118
+    Height = 144
     Caption = '담당자 관련'
     TabOrder = 1
     object btnRegistContact: TButton
@@ -124,6 +142,15 @@ object frmExample: TfrmExample
       Caption = '담당자 정보 수정'
       TabOrder = 2
       OnClick = btnUpdateContactClick
+    end
+    object btnGetContactInfo: TButton
+      Left = 8
+      Top = 112
+      Width = 129
+      Height = 25
+      Caption = '담당자 정보 확인'
+      TabOrder = 3
+      OnClick = btnGetContactInfoClick
     end
   end
   object GroupBox3: TGroupBox

@@ -1,7 +1,7 @@
 {******************************************************************************}
 { 팝빌 예금주조회 API Delphi SDK Example
 {
-{ - 업데이트 일자 : 2020-07-02
+{ - 업데이트 일자 : 2021-06-15
 { - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 { - 연동 기술지원 이메일 : code@linkhub.co.kr
 {
@@ -68,6 +68,9 @@ type
     btnUpdateCorpInfo: TButton;
     Label4: TLabel;
     txtAccountNumber: TEdit;
+    btnGetPaymentURL: TButton;
+    btnGetUseHistoryURL: TButton;
+    btnGetContactInfo: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCheckAccountInfoClick(Sender: TObject);
@@ -86,6 +89,9 @@ type
     procedure btnUpdateCorpInfoClick(Sender: TObject);
     procedure btnGetChargeInfoClick(Sender: TObject);
     procedure btnGetPartnerURL_CHRGClick(Sender: TObject);
+    procedure btnGetPaymentURLClick(Sender: TObject);
+    procedure btnGetUseHistoryURLClick(Sender: TObject);
+    procedure btnGetContactInfoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -621,6 +627,90 @@ begin
                 end;
         end;
         ShowMessage('URL : ' + #13 + resultURL);
+end;
+
+procedure TfrmExample.btnGetPaymentURLClick(Sender: TObject);
+var
+        resultURL : String;
+begin
+        {**********************************************************************}
+        { 연동회원 포인트 결제내역 팝업 URL을 반환한다.
+        { - 보안정책으로 인해 반환된 URL의 유효시간은 30초이다.
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetPaymentURL
+        {**********************************************************************}
+        
+        try
+                resultURL := accountCheckService.getPaymentURL(txtCorpNum.Text);
+        except
+                on le : EPopbillException do begin
+                        ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
+                        Exit;
+                end;
+        end;
+        ShowMessage('URL :  ' + #13 + resultURL);
+end;
+
+procedure TfrmExample.btnGetUseHistoryURLClick(Sender: TObject);
+var
+        resultURL : String;
+begin
+        {**********************************************************************}
+        { 연동회원 포인트 사용내역 팝업 URL을 반환한다.
+        { - 보안정책으로 인해 반환된 URL의 유효시간은 30초이다.
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetUseHistoryURL
+        {**********************************************************************}
+
+        try
+                resultURL := accountCheckService.getUseHistoryURL(txtCorpNum.Text);
+        except
+                on le : EPopbillException do begin
+                        ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
+                        Exit;
+                end;
+        end;
+        ShowMessage('URL :  ' + #13 + resultURL);
+
+end;
+
+procedure TfrmExample.btnGetContactInfoClick(Sender: TObject);
+var
+        contactInfo : TContactInfo;
+        contactID : string;
+        tmp : string;
+begin
+        {**********************************************************************}
+        { 연동회원 사업자번호에 등록된 담당자 정보를 확인한다.
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetContactInfo
+        {**********************************************************************}
+
+        contactID := 'testkorea';
+        
+        try
+                contactInfo := accountCheckService.getContactInfo(txtCorpNum.Text, contactID);
+        except
+                on le : EPopbillException do begin
+                        ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
+                        Exit;
+                end;
+        end;
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                tmp := 'id (아이디) : ' + contactInfo.id + #13;
+                tmp := tmp + 'personName (담당자 성명) : ' + contactInfo.personName + #13;
+                tmp := tmp + 'tel (담당자 연락처(전화번호)) : ' + contactInfo.tel + #13;
+                tmp := tmp + 'hp (담당자 휴대폰번호) : ' + contactInfo.hp + #13;
+                tmp := tmp + 'fax (담당자 팩스번호) : ' + contactInfo.fax + #13;
+                tmp := tmp + 'email (담당자 이메일) : ' + contactInfo.email + #13;
+                tmp := tmp + 'regDT (등록 일시) : ' + contactInfo.regDT + #13;
+                tmp := tmp + 'searchRole (담당자 조회권한) : ' + contactInfo.searchRole + #13;
+                tmp := tmp + 'mgrYN (관리자 여부) : ' + booltostr(contactInfo.mgrYN) + #13;
+                tmp := tmp + 'state (계정상태) : ' + inttostr(contactInfo.state) + #13;
+                ShowMessage(tmp);
+        end
 end;
 
 end.
