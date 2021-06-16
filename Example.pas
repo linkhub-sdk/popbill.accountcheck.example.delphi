@@ -119,6 +119,9 @@ begin
 
         //인증토큰 IP제한기능 사용여부, true(권장)
         accountCheckService.IPRestrictOnOff := true;
+
+        //로컬시스템 시간 사용여부, true(사용), false(미사용) - 기본값
+        accountCheckService.UseLocalTimeYN := false;
 end;
 
 function BoolToStr(b:Boolean):String;
