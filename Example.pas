@@ -236,7 +236,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        end   
 end;
 
 procedure TfrmExample.btnCheckIsMemberClick(Sender: TObject);
@@ -257,7 +264,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        end   
 end;
 
 procedure TfrmExample.btnCheckIDClick(Sender: TObject);
@@ -277,7 +291,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        end             
 end;
 
 procedure TfrmExample.btnGetBalanceClick(Sender: TObject);
@@ -299,7 +320,15 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('잔여포인트 : ' + FloatToStr(balance));
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('잔여포인트 : ' + FloatToStr(balance));     
+        end   
+
 end;
 
 procedure TfrmExample.btnGetUnitCostClick(Sender: TObject);
@@ -349,7 +378,15 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('URL : ' + #13 + resultURL);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('URL : ' + #13 + resultURL);
+        end   
+
 end;
 
 procedure TfrmExample.btnGetChargeURLClick(Sender: TObject);
@@ -370,7 +407,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('URL : ' + #13 + resultURL);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('URL : ' + #13 + resultURL);
+        end         
 end;
 
 procedure TfrmExample.btnGetPartnerPointClick(Sender: TObject);
@@ -392,7 +436,15 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('잔여포인트 : ' + FloatToStr(balance));
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('잔여포인트 : ' + FloatToStr(balance));
+        end   
+        
 end;
 
 procedure TfrmExample.btnRegistContactClick(Sender: TObject);
@@ -437,7 +489,15 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        end   
+        
 end;
 
 procedure TfrmExample.btnListContactClick(Sender: TObject);
@@ -460,23 +520,30 @@ begin
                 end;
         end;
 
-        tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchRole(담당자 조회 권한) | ';
-        tmp := tmp + 'tel(연락처) | fax(팩스) | mgrYN(관리자 여부) | regDT(등록일시) | state(상태)' + #13;
-
-        for i := 0 to Length(InfoList) -1 do
+        if accountCheckService.LastErrCode <> 0 then
         begin
-            tmp := tmp + InfoList[i].id + ' | ';
-            tmp := tmp + InfoList[i].email + ' | ';
-            tmp := tmp + InfoList[i].hp + ' | ';
-            tmp := tmp + InfoList[i].personName + ' | ';
-            tmp := tmp + InfoList[i].searchRole + ' | ';
-            tmp := tmp + InfoList[i].tel + ' | ';
-            tmp := tmp + InfoList[i].fax + ' | ';
-            tmp := tmp + BoolToStr(InfoList[i].mgrYN) + ' | ';
-            tmp := tmp + InfoList[i].regDT + ' | ';
-            tmp := tmp + IntToStr(InfoList[i].state) + #13;
-        end;
-        ShowMessage(tmp);
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchRole(담당자 조회 권한) | ';
+                tmp := tmp + 'tel(연락처) | fax(팩스) | mgrYN(관리자 여부) | regDT(등록일시) | state(상태)' + #13;
+
+                for i := 0 to Length(InfoList) -1 do
+                begin
+                        tmp := tmp + InfoList[i].id + ' | ';
+                        tmp := tmp + InfoList[i].email + ' | ';
+                        tmp := tmp + InfoList[i].hp + ' | ';
+                        tmp := tmp + InfoList[i].personName + ' | ';
+                        tmp := tmp + InfoList[i].searchRole + ' | ';
+                        tmp := tmp + InfoList[i].tel + ' | ';
+                        tmp := tmp + InfoList[i].fax + ' | ';
+                        tmp := tmp + BoolToStr(InfoList[i].mgrYN) + ' | ';
+                        tmp := tmp + InfoList[i].regDT + ' | ';
+                        tmp := tmp + IntToStr(InfoList[i].state) + #13;
+                end;
+                ShowMessage(tmp);
+        end     
 end;
 
 procedure TfrmExample.btnUpdateContactClick(Sender: TObject);
@@ -522,7 +589,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        end    
 end;
 
 procedure TfrmExample.btnGetCorpInfoClick(Sender: TObject);
@@ -544,12 +618,19 @@ begin
                 end;
         end;
 
-        tmp := 'CorpName (상호) : ' + corpInfo.CorpName + #13;
-        tmp := tmp + 'CeoName (대표자성명) : ' + corpInfo.CeoName + #13;
-        tmp := tmp + 'BizType (업태) : ' + corpInfo.BizType + #13;
-        tmp := tmp + 'BizClass (종목) : ' + corpInfo.BizClass + #13;
-        tmp := tmp + 'Addr (주소) : ' + corpInfo.Addr + #13;
-        ShowMessage(tmp);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                tmp := 'CorpName (상호) : ' + corpInfo.CorpName + #13;
+                tmp := tmp + 'CeoName (대표자성명) : ' + corpInfo.CeoName + #13;
+                tmp := tmp + 'BizType (업태) : ' + corpInfo.BizType + #13;
+                tmp := tmp + 'BizClass (종목) : ' + corpInfo.BizClass + #13;
+                tmp := tmp + 'Addr (주소) : ' + corpInfo.Addr + #13;
+                ShowMessage(tmp);
+        end    
 end;
 
 procedure TfrmExample.btnUpdateCorpInfoClick(Sender: TObject);
@@ -587,7 +668,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(response.code) + #10#13 + '응답메시지 : '+ response.Message);
+        end      
 end;
 
 procedure TfrmExample.btnGetChargeInfoClick(Sender: TObject);
@@ -640,7 +728,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('URL : ' + #13 + resultURL);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('URL :  ' + #13 + resultURL);
+        end
 end;
 
 procedure TfrmExample.btnGetPaymentURLClick(Sender: TObject);
@@ -661,7 +756,14 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('URL :  ' + #13 + resultURL);
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('URL :  ' + #13 + resultURL);
+        end
 end;
 
 procedure TfrmExample.btnGetUseHistoryURLClick(Sender: TObject);
@@ -682,8 +784,15 @@ begin
                         Exit;
                 end;
         end;
-        ShowMessage('URL :  ' + #13 + resultURL);
 
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('URL :  ' + #13 + resultURL);
+        end
 end;
 
 procedure TfrmExample.btnGetContactInfoClick(Sender: TObject);
@@ -728,3 +837,4 @@ begin
 end;
 
 end.
+
