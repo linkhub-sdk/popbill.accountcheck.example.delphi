@@ -478,7 +478,7 @@ begin
         // [필수] 이메일 (최대 100자)
         joinInfo.email := 'test@test.com';
 
-        // 담당자 조회권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
+        // 담당자 권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
         joinInfo.searchRole := '3';
 
         try
@@ -526,7 +526,7 @@ begin
         end
         else
         begin
-                tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchRole(담당자 조회 권한) | ';
+                tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchRole(담당자 권한) | ';
                 tmp := tmp + 'tel(연락처) | fax(팩스) | mgrYN(관리자 여부) | regDT(등록일시) | state(상태)' + #13;
 
                 for i := 0 to Length(InfoList) -1 do
@@ -577,7 +577,7 @@ begin
         // 팩스번호 (최대 20자)
         contactInfo.fax := '02-6442-9799';
 
-        // 담당자 조회권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
+        // 담당자 권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
         contactInfo.searchRole := '3';
 
 
@@ -829,7 +829,7 @@ begin
                 tmp := tmp + 'fax (담당자 팩스번호) : ' + contactInfo.fax + #13;
                 tmp := tmp + 'email (담당자 이메일) : ' + contactInfo.email + #13;
                 tmp := tmp + 'regDT (등록 일시) : ' + contactInfo.regDT + #13;
-                tmp := tmp + 'searchRole (담당자 조회권한) : ' + contactInfo.searchRole + #13;
+                tmp := tmp + 'searchRole (담당자 권한) : ' + contactInfo.searchRole + #13;
                 tmp := tmp + 'mgrYN (관리자 여부) : ' + booltostr(contactInfo.mgrYN) + #13;
                 tmp := tmp + 'state (계정상태) : ' + inttostr(contactInfo.state) + #13;
                 ShowMessage(tmp);
