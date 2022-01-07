@@ -1,7 +1,7 @@
 {******************************************************************************}
 { 팝빌 예금주조회 API Delphi SDK Example
 {
-{ - 업데이트 일자 : 2021-06-15
+{ - 업데이트 일자 : 2021-01-07
 { - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 { - 연동 기술지원 이메일 : code@linkhub.co.kr
 {
@@ -60,20 +60,32 @@ type
     btnCheckIsMember: TButton;
     btnGetAccessURL: TButton;
     GroupBox5: TGroupBox;
-    Label3: TLabel;
-    txtBankCode: TEdit;
-    btnCheckAccountInfo: TButton;
     GroupBox6: TGroupBox;
     btnGetCorpInfo: TButton;
     btnUpdateCorpInfo: TButton;
-    Label4: TLabel;
-    txtAccountNumber: TEdit;
     btnGetPaymentURL: TButton;
     btnGetUseHistoryURL: TButton;
     btnGetContactInfo: TButton;
+    GroupBox10: TGroupBox;
+    Label3: TLabel;
+    Label4: TLabel;
+    txtBankCode: TEdit;
+    txtAccountNumber: TEdit;
+    btnCheckAccountInfo: TButton;
+    GroupBox11: TGroupBox;
+    Label5: TLabel;
+    Label6: TLabel;
+    txtBankCodeD: TEdit;
+    txtAccountNumberD: TEdit;
+    btnCheckDepositorInfo: TButton;
+    Label7: TLabel;
+    txtIdentityNumTypeD: TEdit;
+    txtIdentityNumD: TEdit;
+    Label8: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCheckAccountInfoClick(Sender: TObject);
+    procedure btnCheckDepositorInfoClick(Sender: TObject);
     procedure btnCheckIsMemberClick(Sender: TObject);
     procedure btnJoinMemberClick(Sender: TObject);
     procedure btnCheckIDClick(Sender: TObject);
@@ -143,7 +155,7 @@ var
         tmp : string;
 begin
         {**********************************************************************}
-        { 1건의 계좌에 대한 예금주명을 조회합니다.
+        { 1건의 예금주성명을 조회합니다.
         { - https://docs.popbill.com/accountcheck/delphi/api#CheckAccountInfo
         {**********************************************************************}
 
@@ -166,10 +178,49 @@ begin
                 tmp := tmp + 'accountNumber (계좌번호) : '+ accountInfo.accountNumber + #13;
                 tmp := tmp + 'accountName (예금주 성명) : '+ accountInfo.accountName + #13;
                 tmp := tmp + 'checkDate (확인일시) : '+ FloatToStr(accountInfo.checkDate) + #13;
-                tmp := tmp + 'resultCode (응답코드) : '+ accountInfo.resultCode + #13;
+                tmp := tmp + 'result (응답코드) : '+ accountInfo.result + #13;
                 tmp := tmp + 'resultMessage (응답메시지) : '+ accountInfo.resultMessage + #13#13;
 
                 accountInfo.Free;
+                ShowMessage(tmp);
+        end;
+end;
+
+procedure TfrmExample.btnCheckDepositorInfoClick(Sender: TObject);
+var
+        dePositorInfo : TDepositorCheckInfo;
+        tmp : string;
+begin
+        {**********************************************************************}
+        { 1건의 예금주실명을 조회합니다.
+        { - https://docs.popbill.com/accountcheck/delphi/api#CheckAccountInfo
+        {**********************************************************************}
+
+        try
+                dePositorInfo := accountCheckService.CheckDepositorInfo(txtCorpNum.text, txtBankCodeD.text, txtAccountNumberD.text, txtIdentityNumTypeD.text, txtIdentityNumD.text);
+        except
+                on le : EPopbillException do begin
+                        ShowMessage(IntToStr(le.code) + ' | ' +  le.Message);
+                        Exit;
+                end;
+        end;
+
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage(IntToStr(accountCheckService.LastErrCode) + ' | ' +  accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                tmp := 'bankCode (기관코드) : '+ dePositorInfo.bankCode + #13;
+                tmp := tmp + 'accountNumber (계좌번호) : '+ dePositorInfo.accountNumber + #13;
+                tmp := tmp + 'accountName (예금주 성명) : '+ dePositorInfo.accountName + #13;
+                tmp := tmp + 'checkDate (확인일시) : '+ FloatToStr(dePositorInfo.checkDate) + #13;
+                tmp := tmp + 'identityNumType (등록번호 유형) : '+ dePositorInfo.identityNumType + #13;
+                tmp := tmp + 'identityNum (등록번호) : '+ dePositorInfo.identityNum + #13;
+                tmp := tmp + 'result (응답코드) : '+ dePositorInfo.result + #13;
+                tmp := tmp + 'resultMessage (응답메시지) : '+ dePositorInfo.resultMessage + #13#13;
+
+                dePositorInfo.Free;
                 ShowMessage(tmp);
         end;
 end;
@@ -837,4 +888,3 @@ begin
 end;
 
 end.
-
