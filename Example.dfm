@@ -1,8 +1,8 @@
 object frmExample: TfrmExample
-  Left = 561
-  Top = 475
+  Left = 277
+  Top = 442
   Width = 1140
-  Height = 390
+  Height = 493
   Caption = '팝빌 예금주조회 API Delphi SDK Example'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -252,50 +252,133 @@ object frmExample: TfrmExample
   object GroupBox5: TGroupBox
     Left = 16
     Top = 224
-    Width = 569
-    Height = 97
+    Width = 1089
+    Height = 201
     Caption = '예금주조회 관련 기능 API'
     TabOrder = 11
-    object Label3: TLabel
-      Left = 24
-      Top = 24
-      Width = 60
-      Height = 13
-      Caption = '기관코드 :  '
-    end
-    object Label4: TLabel
-      Left = 24
-      Top = 48
-      Width = 60
-      Height = 13
-      Caption = '계좌번호 :  '
-    end
-    object txtBankCode: TEdit
-      Left = 92
-      Top = 21
-      Width = 121
-      Height = 21
-      ImeName = 'Microsoft IME 2010'
+    object GroupBox10: TGroupBox
+      Left = 120
+      Top = 25
+      Width = 345
+      Height = 105
+      Caption = '계좌성명조회'
       TabOrder = 0
-      Text = '0004'
+      object Label3: TLabel
+        Left = 8
+        Top = 32
+        Width = 60
+        Height = 13
+        Caption = '기관코드 :  '
+      end
+      object Label4: TLabel
+        Left = 8
+        Top = 64
+        Width = 60
+        Height = 13
+        Caption = '계좌번호 :  '
+      end
+      object txtBankCode: TEdit
+        Left = 72
+        Top = 29
+        Width = 121
+        Height = 21
+        ImeName = 'Microsoft IME 2010'
+        TabOrder = 0
+      end
+      object txtAccountNumber: TEdit
+        Left = 72
+        Top = 61
+        Width = 121
+        Height = 21
+        ImeName = 'Microsoft IME 2010'
+        TabOrder = 1
+      end
+      object btnCheckAccountInfo: TButton
+        Left = 206
+        Top = 27
+        Width = 123
+        Height = 58
+        Caption = '계좌성명조회'
+        TabOrder = 2
+        OnClick = btnCheckAccountInfoClick
+      end
     end
-    object btnCheckAccountInfo: TButton
-      Left = 222
-      Top = 15
-      Width = 123
-      Height = 58
-      Caption = '예금주조회 조회'
+    object GroupBox11: TGroupBox
+      Left = 579
+      Top = 26
+      Width = 345
+      Height = 159
+      Caption = '계좌실명조회'
       TabOrder = 1
-      OnClick = btnCheckAccountInfoClick
-    end
-    object txtAccountNumber: TEdit
-      Left = 92
-      Top = 45
-      Width = 121
-      Height = 21
-      ImeName = 'Microsoft IME 2010'
-      TabOrder = 2
-      Text = '94324511758'
+      object Label5: TLabel
+        Left = 8
+        Top = 32
+        Width = 60
+        Height = 13
+        Caption = '기관코드 :  '
+      end
+      object Label6: TLabel
+        Left = 8
+        Top = 64
+        Width = 60
+        Height = 13
+        Caption = '계좌번호 :  '
+      end
+      object Label7: TLabel
+        Left = 8
+        Top = 96
+        Width = 87
+        Height = 13
+        Caption = '등록번호 유형 :  '
+      end
+      object Label8: TLabel
+        Left = 8
+        Top = 126
+        Width = 60
+        Height = 13
+        Caption = '등록번호 :  '
+      end
+      object txtBankCodeD: TEdit
+        Left = 77
+        Top = 29
+        Width = 121
+        Height = 21
+        ImeName = 'Microsoft IME 2010'
+        TabOrder = 0
+      end
+      object txtAccountNumberD: TEdit
+        Left = 77
+        Top = 60
+        Width = 121
+        Height = 21
+        ImeName = 'Microsoft IME 2010'
+        TabOrder = 1
+      end
+      object btnCheckDepositorInfo: TButton
+        Left = 210
+        Top = 27
+        Width = 123
+        Height = 58
+        Caption = '계좌실명조회'
+        TabOrder = 2
+        OnClick = btnCheckDepositorInfoClick
+      end
+      object txtIdentityNumTypeD: TEdit
+        Left = 101
+        Top = 92
+        Width = 97
+        Height = 21
+        ImeName = 'Microsoft IME 2010'
+        TabOrder = 3
+      end
+      object txtIdentityNumD: TEdit
+        Left = 77
+        Top = 122
+        Width = 121
+        Height = 21
+        ImeName = 'Microsoft IME 2010'
+        TabOrder = 4
+      end
     end
   end
   object GroupBox6: TGroupBox
