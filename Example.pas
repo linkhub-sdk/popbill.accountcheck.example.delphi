@@ -82,6 +82,8 @@ type
     txtIdentityNumTypeD: TEdit;
     txtIdentityNumD: TEdit;
     Label8: TLabel;
+    Label9: TLabel;
+    txtServiceType: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCheckAccountInfoClick(Sender: TObject);
@@ -387,12 +389,12 @@ var
         unitcost : Single;
 begin
         {**********************************************************************}
-        { 예금주성명 조회단가를 확인합니다.
+        { 예금주 조회단가를 확인합니다.
         { - https://docs.popbill.com/accountcheck/delphi/api#GetUnitCost
         {**********************************************************************}
 
         try
-                unitcost := accountCheckService.GetUnitCost(txtCorpNum.text);
+                unitcost := accountCheckService.GetUnitCost(txtCorpNum.text, txtServiceType.text);
         except
                 on le : EPopbillException do begin
                         ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
@@ -740,7 +742,7 @@ begin
         {**********************************************************************}
 
         try
-                chargeInfo := accountCheckService.GetChargeInfo(txtCorpNum.text);
+                chargeInfo := accountCheckService.GetChargeInfo(txtCorpNum.text, txtServiceType.text);
         except
                 on le : EPopbillException do begin
                         ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);

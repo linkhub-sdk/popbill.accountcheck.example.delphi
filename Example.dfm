@@ -168,6 +168,13 @@ object frmExample: TfrmExample
     Height = 119
     Caption = '포인트 관련'
     TabOrder = 3
+    object Label9: TLabel
+      Left = 8
+      Top = 88
+      Width = 75
+      Height = 13
+      Caption = '서비스 유형 :'
+    end
     object btnGetChargeInfo: TButton
       Left = 8
       Top = 16
@@ -176,6 +183,14 @@ object frmExample: TfrmExample
       Caption = '과금정보 확인'
       TabOrder = 0
       OnClick = btnGetChargeInfoClick
+    end
+    object txtServiceType: TEdit
+      Left = 85
+      Top = 85
+      Width = 50
+      Height = 21
+      ImeName = '한국어 입력 시스템 (IME 2000)'
+      TabOrder = 1
     end
   end
   object GroupBox1: TGroupBox
