@@ -4,9 +4,10 @@
 { - 업데이트 일자 : 2021-01-07
 { - 연동 기술지원 연락처 : 1600-9854
 { - 연동 기술지원 이메일 : code@linkhubcorp.com
+{ - SDK 튜토리얼 : https://docs.popbill.com/accountcheck/tutorial/delphi
 {
 { <테스트 연동개발 준비사항>
-{ (1) 30, 33번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
+{ (1) 31, 34번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
 {    링크허브 가입시 메일로 발급받은 인증정보로 수정
 {
 {******************************************************************************}
@@ -419,7 +420,7 @@ begin
         {**********************************************************************}
         { 팝빌(www.popbill.com)에 로그인된 팝업 URL을 반환합니다.
         { - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-        { - https://docs.popbill.com/accountcheck/delphi/api#getAccessURL
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetAccessURL
         {**********************************************************************}
 
         try
@@ -448,7 +449,7 @@ begin
         {**********************************************************************}
         { 연동회원 포인트 충전 URL을 반환합니다.
         { - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
-        { - https://docs.popbill.com/accountcheck/delphi/api#getChargeURL
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetChargeURL
         {**********************************************************************}
         
         try
@@ -769,7 +770,7 @@ begin
         {**********************************************************************}
         { 파트너 포인트 충전 URL을 반환합니다.
         { - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
-        { - https://docs.popbill.com/accountcheck/delphi/api#getPartnerURL
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetPartnerURL
         {**********************************************************************}
         
         try
