@@ -1,7 +1,7 @@
 {******************************************************************************}
 { 팝빌 예금주조회 API Delphi SDK Example
 {
-{ - 업데이트 일자 : 2021-01-07
+{ - 업데이트 일자 : 2021-01-13
 { - 연동 기술지원 연락처 : 1600-9854
 { - 연동 기술지원 이메일 : code@linkhubcorp.com
 { - SDK 튜토리얼 : https://docs.popbill.com/accountcheck/tutorial/delphi
@@ -50,10 +50,12 @@ type
     btnUpdateContact: TButton;
     GroupBox3: TGroupBox;
     GroupBox2: TGroupBox;
-    btnGetChargeInfo: TButton;
+    btnGetChargeInfo_ACC: TButton;
+    btnGetChargeInfo_DEP: TButton;
     GroupBox1: TGroupBox;
     btnCheckID: TButton;
-    btnGetUnitCost: TButton;
+    btnGetUnitCost_ACC: TButton;
+    btnGetUnitCost_DEP: TButton;
     txtCorpNum: TEdit;
     txtUserID: TEdit;
     btnJoinMember: TButton;
@@ -79,11 +81,9 @@ type
     txtAccountNumberD: TEdit;
     btnCheckDepositorInfo: TButton;
     Label7: TLabel;
-    txtIdentityNumTypeD: TEdit;
     txtIdentityNumD: TEdit;
     Label8: TLabel;
-    Label9: TLabel;
-    txtServiceType: TEdit;
+    cbIdentityNumType: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCheckAccountInfoClick(Sender: TObject);
@@ -92,7 +92,8 @@ type
     procedure btnJoinMemberClick(Sender: TObject);
     procedure btnCheckIDClick(Sender: TObject);
     procedure btnGetBalanceClick(Sender: TObject);
-    procedure btnGetUnitCostClick(Sender: TObject);
+    procedure btnGetUnitCost_ACCClick(Sender: TObject);
+    procedure btnGetUnitCost_DEPClick(Sender: TObject);
     procedure btnGetAccessURLClick(Sender: TObject);
     procedure btnGetChargeURLClick(Sender: TObject);
     procedure btnGetPartnerPointClick(Sender: TObject);
@@ -101,13 +102,15 @@ type
     procedure btnUpdateContactClick(Sender: TObject);
     procedure btnGetCorpInfoClick(Sender: TObject);
     procedure btnUpdateCorpInfoClick(Sender: TObject);
-    procedure btnGetChargeInfoClick(Sender: TObject);
+    procedure btnGetChargeInfo_ACCClick(Sender: TObject);
+    procedure btnGetChargeInfo_DEPClick(Sender: TObject);
     procedure btnGetPartnerURL_CHRGClick(Sender: TObject);
     procedure btnGetPaymentURLClick(Sender: TObject);
     procedure btnGetUseHistoryURLClick(Sender: TObject);
     procedure btnGetContactInfoClick(Sender: TObject);
+    procedure cbIdentityNumTypeChange(Sender: TObject);
   private
-    { Private declarations }
+    IdentityNumType : String;
   public
     { Public declarations }
   end;
@@ -121,6 +124,7 @@ implementation
 
 procedure TfrmExample.FormCreate(Sender: TObject);
 begin
+        IdentityNumType := 'P';
 
         //예금주조회 모듈 초기화.
         accountCheckService := TAccountCheckService.Create(LinkID,SecretKey);
@@ -199,7 +203,7 @@ begin
         {**********************************************************************}
 
         try
-                dePositorInfo := accountCheckService.CheckDepositorInfo(txtCorpNum.text, txtBankCodeD.text, txtAccountNumberD.text, txtIdentityNumTypeD.text, txtIdentityNumD.text);
+                dePositorInfo := accountCheckService.CheckDepositorInfo(txtCorpNum.text, txtBankCodeD.text, txtAccountNumberD.text, IdentityNumType, txtIdentityNumD.text);
         except
                 on le : EPopbillException do begin
                         ShowMessage(IntToStr(le.code) + ' | ' +  le.Message);
@@ -384,17 +388,48 @@ begin
 
 end;
 
-procedure TfrmExample.btnGetUnitCostClick(Sender: TObject);
+procedure TfrmExample.btnGetUnitCost_ACCClick(Sender: TObject);
 var
         unitcost : Single;
+        serviceType : String;
 begin
         {**********************************************************************}
-        { 예금주 조회단가를 확인합니다.
+        { 계좌성명조회 단가를 확인합니다.
         { - https://docs.popbill.com/accountcheck/delphi/api#GetUnitCost
         {**********************************************************************}
-
+        serviceType := '성명';
         try
-                unitcost := accountCheckService.GetUnitCost(txtCorpNum.text, txtServiceType.text);
+                unitcost := accountCheckService.GetUnitCost(txtCorpNum.text, serviceType);
+        except
+                on le : EPopbillException do begin
+                        ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
+                        Exit;
+                end;
+        end;
+
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                ShowMessage('조회단가 : '+ FloatToStr(unitcost));
+        end;
+
+end;
+
+procedure TfrmExample.btnGetUnitCost_DEPClick(Sender: TObject);
+var
+        unitcost : Single;
+        serviceType : String;
+begin
+        {**********************************************************************}
+        { 계좌실명조회 단가를 확인합니다.
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetUnitCost
+        {**********************************************************************}
+        serviceType := '실명';
+        try
+                unitcost := accountCheckService.GetUnitCost(txtCorpNum.text, serviceType);
         except
                 on le : EPopbillException do begin
                         ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
@@ -731,18 +766,56 @@ begin
         end      
 end;
 
-procedure TfrmExample.btnGetChargeInfoClick(Sender: TObject);
+procedure TfrmExample.btnGetChargeInfo_ACCClick(Sender: TObject);
 var
         chargeInfo : TAccountCheckChargeInfo;
+        serviceType : String;
         tmp : String;
 begin
         {**********************************************************************}
-        { 예금주조회 API 서비스 과금정보를 확인합니다.
+        { 계좌성명조회 API 서비스 과금정보를 확인합니다.
         { - https://docs.popbill.com/accountcheck/delphi/api#GetChargeInfo
         {**********************************************************************}
 
+        serviceType := '성명';
+        
         try
-                chargeInfo := accountCheckService.GetChargeInfo(txtCorpNum.text, txtServiceType.text);
+                chargeInfo := accountCheckService.GetChargeInfo(txtCorpNum.text, serviceType);
+        except
+                on le : EPopbillException do begin
+                        ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
+                        Exit;
+                end;
+        end;
+
+        if accountCheckService.LastErrCode <> 0 then
+        begin
+                ShowMessage('응답코드 : ' + IntToStr(accountCheckService.LastErrCode) + #10#13 +'응답메시지 : '+ accountCheckService.LastErrMessage);
+        end
+        else
+        begin
+                tmp := 'unitCost (단가) : ' + chargeInfo.unitCost + #13;
+                tmp := tmp + 'chargeMethod (과금유형) : ' + chargeInfo.chargeMethod + #13;
+                tmp := tmp + 'rateSystem (과금제도) : ' + chargeInfo.rateSystem + #13;
+                ShowMessage(tmp);
+        end;
+end;
+
+procedure TfrmExample.btnGetChargeInfo_DEPClick(Sender: TObject);
+var
+        chargeInfo : TAccountCheckChargeInfo;
+        serviceType : String;
+        tmp : String;
+begin
+        {**********************************************************************}
+        { 계좌실명조회 API 서비스 과금정보를 확인합니다.
+        { - https://docs.popbill.com/accountcheck/delphi/api#GetChargeInfo
+        {**********************************************************************}
+
+        serviceType := '실명';
+        
+        try
+                chargeInfo := accountCheckService.GetChargeInfo(txtCorpNum.text, serviceType);
         except
                 on le : EPopbillException do begin
                         ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
@@ -887,6 +960,11 @@ begin
                 tmp := tmp + 'state (계정상태) : ' + inttostr(contactInfo.state) + #13;
                 ShowMessage(tmp);
         end
+end;
+
+procedure TfrmExample.cbIdentityNumTypeChange(Sender: TObject);
+begin
+        IdentityNumType := cbIdentityNumType.Text;
 end;
 
 end.

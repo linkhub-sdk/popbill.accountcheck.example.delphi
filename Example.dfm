@@ -162,35 +162,29 @@ object frmExample: TfrmExample
     TabOrder = 2
   end
   object GroupBox2: TGroupBox
-    Left = 165
+    Left = 160
     Top = 66
-    Width = 148
-    Height = 119
+    Width = 169
+    Height = 151
     Caption = '포인트 관련'
     TabOrder = 3
-    object Label9: TLabel
+    object btnGetChargeInfo_ACC: TButton
       Left = 8
-      Top = 88
-      Width = 75
-      Height = 13
-      Caption = '서비스 유형 :'
-    end
-    object btnGetChargeInfo: TButton
-      Left = 8
-      Top = 16
-      Width = 128
+      Top = 17
+      Width = 153
       Height = 25
-      Caption = '과금정보 확인'
+      Caption = '성명조회 과금정보 확인'
       TabOrder = 0
-      OnClick = btnGetChargeInfoClick
+      OnClick = btnGetChargeInfo_ACCClick
     end
-    object txtServiceType: TEdit
-      Left = 85
-      Top = 85
-      Width = 50
-      Height = 21
-      ImeName = '한국어 입력 시스템 (IME 2000)'
+    object btnGetChargeInfo_DEP: TButton
+      Left = 8
+      Top = 49
+      Width = 153
+      Height = 25
+      Caption = '실명조회 과금정보 확인'
       TabOrder = 1
+      OnClick = btnGetChargeInfo_DEPClick
     end
   end
   object GroupBox1: TGroupBox
@@ -210,14 +204,14 @@ object frmExample: TfrmExample
       OnClick = btnCheckIDClick
     end
   end
-  object btnGetUnitCost: TButton
-    Left = 173
-    Top = 115
-    Width = 128
+  object btnGetUnitCost_ACC: TButton
+    Left = 168
+    Top = 147
+    Width = 153
     Height = 25
-    Caption = '조회 단가 확인'
+    Caption = '성명조회 단가 확인'
     TabOrder = 5
-    OnClick = btnGetUnitCostClick
+    OnClick = btnGetUnitCost_ACCClick
   end
   object txtCorpNum: TEdit
     Left = 161
@@ -378,21 +372,27 @@ object frmExample: TfrmExample
         TabOrder = 2
         OnClick = btnCheckDepositorInfoClick
       end
-      object txtIdentityNumTypeD: TEdit
-        Left = 101
-        Top = 92
-        Width = 97
-        Height = 21
-        ImeName = 'Microsoft IME 2010'
-        TabOrder = 3
-      end
       object txtIdentityNumD: TEdit
         Left = 77
         Top = 122
         Width = 121
         Height = 21
         ImeName = 'Microsoft IME 2010'
+        TabOrder = 3
+      end
+      object cbIdentityNumType: TComboBox
+        Left = 98
+        Top = 93
+        Width = 100
+        Height = 21
+        ImeName = '한국어 입력 시스템 (IME 2000)'
+        ItemHeight = 13
         TabOrder = 4
+        Text = 'P'
+        OnChange = cbIdentityNumTypeChange
+        Items.Strings = (
+          'P'
+          'B')
       end
     end
   end
@@ -421,5 +421,14 @@ object frmExample: TfrmExample
       TabOrder = 1
       OnClick = btnUpdateCorpInfoClick
     end
+  end
+  object btnGetUnitCost_DEP: TButton
+    Left = 168
+    Top = 179
+    Width = 153
+    Height = 25
+    Caption = '실명조회 단가 확인'
+    TabOrder = 13
+    OnClick = btnGetUnitCost_DEPClick
   end
 end
