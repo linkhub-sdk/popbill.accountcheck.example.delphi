@@ -275,12 +275,6 @@ begin
         // 담당자 연락처, 최대 20자
         joinInfo.ContactTEL :='070-4304-2991';
 
-        // 담당자 휴대폰번호, 최대 20자
-        joinInfo.ContactHP := '010-000-1111';
-
-        // 담당자 팩스번호, 최대 20자
-        joinInfo.ContactFAX := '02-6442-9700';
-
         // 담당자 메일, 최대 100자
         joinInfo.ContactEmail := 'code@linkhub.co.kr';
 
@@ -551,12 +545,6 @@ begin
         // [필수] 연락처 (최대 20자)
         joinInfo.tel := '070-4304-2991';
 
-        // 휴대폰번호 (최대 20자)
-        joinInfo.hp := '010-1111-2222';
-
-        // 팩스번호 (최대 20자)
-        joinInfo.fax := '02-6442-9700';
-
         // [필수] 이메일 (최대 100자)
         joinInfo.email := 'test@test.com';
 
@@ -608,18 +596,16 @@ begin
         end
         else
         begin
-                tmp := 'id(아이디) | email(이메일) | hp(휴대폰) | personName(성명) | searchRole(담당자 권한) | ';
-                tmp := tmp + 'tel(연락처) | fax(팩스) | mgrYN(관리자 여부) | regDT(등록일시) | state(상태)' + #13;
+                tmp := 'id(아이디) | email(이메일) | personName(성명) | searchRole(담당자 권한) | ';
+                tmp := tmp + 'tel(연락처) | mgrYN(관리자 여부) | regDT(등록일시) | state(상태)' + #13;
 
                 for i := 0 to Length(InfoList) -1 do
                 begin
                         tmp := tmp + InfoList[i].id + ' | ';
                         tmp := tmp + InfoList[i].email + ' | ';
-                        tmp := tmp + InfoList[i].hp + ' | ';
                         tmp := tmp + InfoList[i].personName + ' | ';
                         tmp := tmp + InfoList[i].searchRole + ' | ';
                         tmp := tmp + InfoList[i].tel + ' | ';
-                        tmp := tmp + InfoList[i].fax + ' | ';
                         tmp := tmp + BoolToStr(InfoList[i].mgrYN) + ' | ';
                         tmp := tmp + InfoList[i].regDT + ' | ';
                         tmp := tmp + IntToStr(InfoList[i].state) + #13;
@@ -650,14 +636,8 @@ begin
         // 연락처 (최대 20자)
         contactInfo.tel := '070-4304-2991';
 
-        // 휴대폰번호 (최대 20자)
-        contactInfo.hp := '010-4324-1111';
-
         // 이메일 주소 (최대 100자)
         contactInfo.email := 'test@test.com';
-
-        // 팩스번호 (최대 20자)
-        contactInfo.fax := '02-6442-9799';
 
         // 담당자 권한, 1-개인권한 / 2-읽기권한 / 3-회사권한
         contactInfo.searchRole := '3';
@@ -945,8 +925,6 @@ begin
                 tmp := 'id (아이디) : ' + contactInfo.id + #13;
                 tmp := tmp + 'personName (담당자 성명) : ' + contactInfo.personName + #13;
                 tmp := tmp + 'tel (담당자 연락처(전화번호)) : ' + contactInfo.tel + #13;
-                tmp := tmp + 'hp (담당자 휴대폰번호) : ' + contactInfo.hp + #13;
-                tmp := tmp + 'fax (담당자 팩스번호) : ' + contactInfo.fax + #13;
                 tmp := tmp + 'email (담당자 이메일) : ' + contactInfo.email + #13;
                 tmp := tmp + 'regDT (등록 일시) : ' + contactInfo.regDT + #13;
                 tmp := tmp + 'searchRole (담당자 권한) : ' + contactInfo.searchRole + #13;
