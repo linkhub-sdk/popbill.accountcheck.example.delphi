@@ -1,7 +1,7 @@
 {******************************************************************************}
 { 팝빌 예금주조회 API Delphi SDK Example
 {
-{ - 업데이트 일자 : 2021-01-13
+{ - 업데이트 일자 : 2022-04-07
 { - 연동 기술지원 연락처 : 1600-9854
 { - 연동 기술지원 이메일 : code@linkhubcorp.com
 { - SDK 튜토리얼 : https://docs.popbill.com/accountcheck/tutorial/delphi
