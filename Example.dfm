@@ -1,6 +1,6 @@
 object frmExample: TfrmExample
-  Left = 815
-  Top = 460
+  Left = 488
+  Top = 364
   Width = 1140
   Height = 493
   Caption = '팝빌 예금주조회 API Delphi SDK Example'
@@ -30,6 +30,14 @@ object frmExample: TfrmExample
     Height = 13
     AutoSize = False
     Caption = '팝빌회원 아이디 :'
+  end
+  object Label9: TLabel
+    Left = 742
+    Top = 20
+    Width = 35
+    Height = 13
+    AutoSize = False
+    Caption = 'URL : '
   end
   object GroupBox7: TGroupBox
     Left = 16
@@ -430,5 +438,13 @@ object frmExample: TfrmExample
     Caption = '실명조회 단가 확인'
     TabOrder = 13
     OnClick = btnGetUnitCost_DEPClick
+  end
+  object txtURL: TEdit
+    Left = 784
+    Top = 19
+    Width = 320
+    Height = 21
+    ImeName = 'Microsoft IME 2010'
+    TabOrder = 14
   end
 end
