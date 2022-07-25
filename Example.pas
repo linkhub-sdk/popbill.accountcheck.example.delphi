@@ -849,7 +849,7 @@ begin
         {**********************************************************************}
         
         try
-                resultURL := accountCheckService.getPaymentURL(txtCorpNum.Text);
+                resultURL := accountCheckService.getPaymentURL(txtCorpNum.Text, txtUserID.Text);
         except
                 on le : EPopbillException do begin
                         ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);
@@ -877,7 +877,7 @@ begin
         {**********************************************************************}
 
         try
-                resultURL := accountCheckService.getUseHistoryURL(txtCorpNum.Text);
+                resultURL := accountCheckService.getUseHistoryURL(txtCorpNum.Text, txtUserID.Text);
         except
                 on le : EPopbillException do begin
                         ShowMessage('응답코드 : ' + IntToStr(le.code) + #10#13 +'응답메시지 : '+ le.Message);

@@ -1,6 +1,6 @@
 object frmExample: TfrmExample
-  Left = 277
-  Top = 442
+  Left = 815
+  Top = 460
   Width = 1140
   Height = 493
   Caption = '팝빌 예금주조회 API Delphi SDK Example'
@@ -275,14 +275,14 @@ object frmExample: TfrmExample
       object Label3: TLabel
         Left = 8
         Top = 32
-        Width = 60
+        Width = 56
         Height = 13
         Caption = '기관코드 :  '
       end
       object Label4: TLabel
         Left = 8
         Top = 64
-        Width = 60
+        Width = 56
         Height = 13
         Caption = '계좌번호 :  '
       end
@@ -322,28 +322,28 @@ object frmExample: TfrmExample
       object Label5: TLabel
         Left = 8
         Top = 32
-        Width = 60
+        Width = 56
         Height = 13
         Caption = '기관코드 :  '
       end
       object Label6: TLabel
         Left = 8
         Top = 64
-        Width = 60
+        Width = 56
         Height = 13
         Caption = '계좌번호 :  '
       end
       object Label7: TLabel
         Left = 8
         Top = 96
-        Width = 87
+        Width = 81
         Height = 13
         Caption = '등록번호 유형 :  '
       end
       object Label8: TLabel
         Left = 8
         Top = 126
-        Width = 60
+        Width = 56
         Height = 13
         Caption = '등록번호 :  '
       end
